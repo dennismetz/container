@@ -38,7 +38,8 @@ class DataProcessorWithDataTest extends AbstractFrontendTest
      */
     public function modHeaderIsRendered(): void
     {
-        $response = $this->executeFrontendRequest(new InternalRequest('/'));
+        $response = $this->executeFrontendSubRequest(new InternalRequest('http://localhost/'));
+        #$response = $this->executeFrontendRequest(new InternalRequest(('/')));
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('my-mod-header:header', $body);

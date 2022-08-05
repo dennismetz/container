@@ -16,11 +16,14 @@ use B13\Container\Domain\Service\ContainerService;
 use B13\Container\Hooks\Datahandler\Database;
 use B13\Container\Hooks\Datahandler\DatamapBeforeStartHook;
 use B13\Container\Tca\Registry;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class DatamapBeforeStartHookTest extends UnitTestCase
 {
-    protected $resetSingletonInstances = true;
+    use ProphecyTrait;
+
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @test

@@ -13,11 +13,14 @@ namespace B13\Container\Tests\Unit\Xclasses;
 
 use B13\Container\Tca\Registry;
 use B13\Container\Xclasses\RecordLocalizeSummaryModifier;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class RecordLocalizeSummaryModifierTest extends UnitTestCase
 {
-    protected $resetSingletonInstances = true;
+    use ProphecyTrait;
+
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @test

@@ -36,7 +36,7 @@ abstract class DatahandlerTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];
@@ -44,7 +44,7 @@ abstract class DatahandlerTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $coreExtensionsToLoad = ['workspaces'];
+    protected array $coreExtensionsToLoad = ['workspaces'];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
@@ -75,7 +75,8 @@ abstract class DatahandlerTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->backendUser = $this->setUpBackendUserFromFixture(1);
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $this->backendUser = $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
         $GLOBALS['BE_USER'] = $this->backendUser;
         Bootstrap::initializeLanguageObject();
         $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);

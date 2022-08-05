@@ -16,14 +16,17 @@ use B13\Container\Domain\Factory\ContainerFactory;
 use B13\Container\Domain\Model\Container;
 use B13\Container\Domain\Service\ContainerService;
 use B13\Container\Tca\Registry;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ContainerServiceTest extends UnitTestCase
 {
-    protected $resetSingletonInstances = true;
+    use ProphecyTrait;
 
-    protected $allContainerColumns = [200, 201, 202];
+    protected bool $resetSingletonInstances = true;
+
+    protected array $allContainerColumns = [200, 201, 202];
 
     /**
      * @return array

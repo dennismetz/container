@@ -14,12 +14,15 @@ namespace B13\Container\Tests\Unit\Domain\Factory\PageView;
 use B13\Container\Domain\Factory\Database;
 use B13\Container\Domain\Factory\PageView\ContainerFactory;
 use B13\Container\Tca\Registry;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ContainerFactoryTest extends UnitTestCase
 {
-    protected $resetSingletonInstances = true;
+    use ProphecyTrait;
+
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @test

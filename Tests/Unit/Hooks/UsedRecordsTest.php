@@ -15,13 +15,17 @@ use B13\Container\Domain\Factory\PageView\Backend\ContainerFactory;
 use B13\Container\Domain\Model\Container;
 use B13\Container\Hooks\UsedRecords;
 use B13\Container\Tca\Registry;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class UsedRecordsTest extends UnitTestCase
 {
-    protected $resetSingletonInstances = true;
+    use ProphecyTrait;
+
+    protected bool $resetSingletonInstances = true;
+
     /**
      * @test
      */

@@ -28,7 +28,7 @@ class IntegrityTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];
@@ -59,7 +59,8 @@ class IntegrityTest extends FunctionalTestCase
     {
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/children_with_wrong_pids.xml');
 
-        $GLOBALS['BE_USER'] = $this->setUpBackendUserFromFixture(1);
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
         Bootstrap::initializeLanguageObject();
 
         $backendLayout = new BackendLayout(

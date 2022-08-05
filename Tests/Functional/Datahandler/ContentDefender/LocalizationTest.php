@@ -18,7 +18,7 @@ class LocalizationTest extends DatahandlerTest
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
         'typo3conf/ext/content_defender',

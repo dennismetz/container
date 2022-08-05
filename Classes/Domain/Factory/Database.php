@@ -20,6 +20,8 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
 use TYPO3\CMS\Core\Database\Query\Restriction\FrontendWorkspaceRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Http\ApplicationType;
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -44,19 +46,26 @@ class Database implements SingletonInterface
     protected function getQueryBuilder(): QueryBuilder
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
-        if (TYPO3_MODE === 'BE') {
-            $queryBuilder->getRestrictions()
-                ->removeAll()
-                ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
-                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
-        } elseif (TYPO3_MODE === 'FE') {
-            $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
-            // do not use FrontendWorkspaceRestriction
-            $queryBuilder->getRestrictions()
-                ->removeByType(FrontendWorkspaceRestriction::class)
-                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
+        if ($this->getServerRequest() !== null) {
+            if (ApplicationType::fromRequest($this->getServerRequest())->isBackend()) {
+                $queryBuilder->getRestrictions()
+                    ->removeAll()
+                    ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
+                    ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
+            } elseif (ApplicationType::fromRequest($this->getServerRequest())->isFrontend()) {
+                $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+                // do not use FrontendWorkspaceRestriction
+                $queryBuilder->getRestrictions()
+                    ->removeByType(FrontendWorkspaceRestriction::class)
+                    ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
+            }
         }
         return $queryBuilder;
+    }
+
+    protected function getServerRequest(): ?ServerRequest
+    {
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 
     public function fetchRecordsByPidAndLanguage(int $pid, int $language): array

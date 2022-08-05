@@ -32,7 +32,7 @@ class SortingTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];
@@ -40,7 +40,8 @@ class SortingTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $GLOBALS['BE_USER'] = $this->setUpBackendUserFromFixture(1);
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
         Bootstrap::initializeLanguageObject();
         $context = GeneralUtility::makeInstance(Context::class);
         $containerRegistry = GeneralUtility::makeInstance(Registry::class);

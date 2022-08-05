@@ -25,7 +25,7 @@ class ContainerFactoryTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];
@@ -33,7 +33,7 @@ class ContainerFactoryTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $coreExtensionsToLoad = ['workspaces'];
+    protected array $coreExtensionsToLoad = ['workspaces'];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
