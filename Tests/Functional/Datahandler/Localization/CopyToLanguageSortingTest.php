@@ -15,7 +15,6 @@ use B13\Container\Tests\Functional\Datahandler\DatahandlerTest;
 
 class CopyToLanguageSortingTest extends DatahandlerTest
 {
-
     protected function setUp(): void
     {
         parent::setUp();

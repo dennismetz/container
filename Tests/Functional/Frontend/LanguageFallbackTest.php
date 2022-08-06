@@ -14,7 +14,6 @@ use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 
 class LanguageFallbackTest extends AbstractFrontendTest
 {
-
     protected function setUp(): void
     {
         parent::setUp();

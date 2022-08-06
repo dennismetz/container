@@ -25,7 +25,7 @@ class WorkspaceTest extends AbstractFrontendTest
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
         $this->typo3MajorVersion = $typo3Version->getMajorVersion();
     }
-    
+
     protected function setUp(): void
     {
         parent::setUp();
