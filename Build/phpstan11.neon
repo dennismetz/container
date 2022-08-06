@@ -32,3 +32,9 @@ parameters:
       message: '#Property TYPO3\\TestingFramework\\Core\\Acceptance\\Helper\\AbstractPageTree::.*tester .*#'
       path: %currentWorkingDirectory%/Tests/Acceptance/Support/PageTree.php
     - '#Constant LF not found.#'
+    -
+      message: '#Class TYPO3\\CMS\\Frontend\\ContentObject\\RecordsContentObject constructor invoked with 0 parameters, 1 required.#'
+      path: %currentWorkingDirectory%/Classes/DataProcessing/ContainerProcessor.php
+    -
+      message: '#Call to an undefined method TYPO3\\CMS\\Frontend\\ContentObject\\RecordsContentObject::setContentObjectRenderer\(\).#'
+      path: %currentWorkingDirectory%/Classes/DataProcessing/ContainerProcessor.php
