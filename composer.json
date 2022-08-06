@@ -32,6 +32,7 @@
         "codeception/codeception": "^5.0 || ^4.1",
         "codeception/module-asserts": "^3.0 || ^1.0",
         "codeception/module-webdriver": "^3.1 || ^1.0",
+        "codeception/module-db": "^3.0 || ^1.0",
         "phpstan/phpstan": "^1.4.8",
         "phpspec/prophecy-phpunit": "^2.0.1",
         "b13/container-example": "dev-master",
