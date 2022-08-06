@@ -29,18 +29,18 @@
         }
     },
     "require-dev": {
-        "codeception/codeception": "^5.0",
-        "codeception/module-asserts": "^3.0",
-        "codeception/module-webdriver": "^3.1",
+        "codeception/codeception": "^5.0 || ^4.1",
+        "codeception/module-asserts": "^3.0 || ^1.0",
+        "codeception/module-webdriver": "^3.1 || ^1.0",
         "phpstan/phpstan": "^1.4.8",
         "phpspec/prophecy-phpunit": "^2.0.1",
         "b13/container-example": "dev-master",
         "typo3/coding-standards": "^0.5.0",
         "typo3/testing-framework": "~7.0@dev",
-        "typo3/cms-install": "12.*.*@dev",
-        "typo3/cms-fluid-styled-content": "12.*.*@dev",
-        "typo3/cms-info": "12.*.*@dev",
-        "typo3/cms-workspaces": "12.*.*@dev"
+        "typo3/cms-install": "^11.5 || 12.*.*@dev",
+        "typo3/cms-fluid-styled-content": "^11.5 || 12.*.*@dev",
+        "typo3/cms-info": "^11.5 || 12.*.*@dev",
+        "typo3/cms-workspaces": "^11.5 || 12.*.*@dev"
     },
     "replace": {
         "typo3-ter/container": "self.version"
