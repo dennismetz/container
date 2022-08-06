@@ -11,6 +11,8 @@ namespace B13\Container\Tests\Acceptance\Support\Extension;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Acceptance\Extension\BackendEnvironment;
 
 class BackendContainerEnvironment extends BackendEnvironment
@@ -42,8 +44,7 @@ class BackendContainerEnvironment extends BackendEnvironment
             'SYS' => ['features' => ['fluidBasedPageModule' => false]],
         ],
         'xmlDatabaseFixtures' => [
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
-            'EXT:container/Tests/Acceptance/Fixtures/sys_language.xml',
+            'EXT:container/Tests/Acceptance/Fixtures/be_users.xml',
             'EXT:container/Tests/Acceptance/Fixtures/pages.xml',
             'EXT:container/Tests/Acceptance/Fixtures/sys_workspace.xml',
             'EXT:container/Tests/Acceptance/Fixtures/tt_content.xml',
@@ -55,6 +56,13 @@ class BackendContainerEnvironment extends BackendEnvironment
     {
         if (getenv('FLUID_BASED_PAGE_MODULE')) {
             $this->localConfig['configurationToUseInTestInstance']['SYS']['features']['fluidBasedPageModule'] = true;
+        }
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Version->getMajorVersion() === 12) {
+            $this->localConfig['testExtensionsToLoad'] = [
+                'typo3conf/ext/container',
+                'typo3conf/ext/container_example',
+            ];
         }
         parent::_initialize();
     }

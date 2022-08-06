@@ -25,6 +25,9 @@ class ContentDefenderCest
         $I->loginAs('admin');
     }
 
+    /**
+     * @group content_defender
+     */
     public function canCreateChildIn2ColsContainerWithNoContentDefenderRestrictionsDefined(BackendTester $I, PageTree $pageTree): void
     {
         $I->click('Page');
@@ -38,6 +41,9 @@ class ContentDefenderCest
         $I->see('Table');
     }
 
+    /**
+     * @group content_defender
+     */
     public function doNotSeeNotAllowedContentElementsInNewContentElementWizard(BackendTester $I, PageTree $pageTree): void
     {
         $I->click('Page');
@@ -51,6 +57,9 @@ class ContentDefenderCest
         $I->dontSee('Table');
     }
 
+    /**
+     * @group content_defender
+     */
     public function doNotSeeNotAllowedContentElementsInCTypeSelectBoxWhenCreateNewElement(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
@@ -68,6 +77,9 @@ class ContentDefenderCest
         $I->dontSee('Table', 'select');
     }
 
+    /**
+     * @group content_defender
+     */
     public function doNotSeeNotAllowedContentElementsInCTypeSelectBoxWhenEditAnElement(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
@@ -79,6 +91,9 @@ class ContentDefenderCest
         $I->dontSee('Table', 'select');
     }
 
+    /**
+     * @group content_defender
+     */
     public function canSeeNewContentButtonIfMaxitemsIsNotReached(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
@@ -88,6 +103,9 @@ class ContentDefenderCest
         $I->see('Content', '#element-tt_content-402 [data-colpos="402-202"]');
     }
 
+    /**
+     * @group content_defender
+     */
     public function canNotSeeNewContentButtonIfMaxitemsIsReached(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
