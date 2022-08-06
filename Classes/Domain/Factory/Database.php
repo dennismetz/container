@@ -12,7 +12,9 @@ namespace B13\Container\Domain\Factory;
  * of the License, or any later version.
  */
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -46,19 +48,19 @@ class Database implements SingletonInterface
     protected function getQueryBuilder(): QueryBuilder
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
-        if ($this->getServerRequest() !== null) {
-            if (ApplicationType::fromRequest($this->getServerRequest())->isBackend()) {
-                $queryBuilder->getRestrictions()
-                    ->removeAll()
-                    ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
-                    ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
-            } elseif (ApplicationType::fromRequest($this->getServerRequest())->isFrontend()) {
-                $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
-                // do not use FrontendWorkspaceRestriction
-                $queryBuilder->getRestrictions()
-                    ->removeByType(FrontendWorkspaceRestriction::class)
-                    ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
-            }
+        if ($this->getServerRequest() instanceof ServerRequestInterface
+            && ApplicationType::fromRequest($this->getServerRequest())->isFrontend()
+        ) {
+            $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+            // do not use FrontendWorkspaceRestriction
+            $queryBuilder->getRestrictions()
+                ->removeByType(FrontendWorkspaceRestriction::class)
+                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
+        } else {
+            $queryBuilder->getRestrictions()
+                ->removeAll()
+                ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
+                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->workspaceId));
         }
         return $queryBuilder;
     }
