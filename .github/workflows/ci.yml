@@ -40,8 +40,13 @@ jobs:
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s unit
 
-      - name: Functional Tests with mariadb
+      - name: Functional Tests with mariadb 11
+        if: startsWith(matrix.TYPO3, '11')
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s functional
+
+      - name: Functional Tests with mariadb 12
+        if: startsWith(matrix.TYPO3, '11')
+        run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s functional -e "--exclude-group=content_defender,frontend"
 
       - name: Acceptance Tests With Fluid Base Page Module on TYPO 10
         if: startsWith(matrix.TYPO3, '10')

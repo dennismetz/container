@@ -29,6 +29,7 @@ class LanguageFallbackTest extends AbstractFrontendTest
 
     /**
      * @test
+     * @group frontend
      */
     public function nothingTranslated(): void
     {
@@ -46,6 +47,7 @@ class LanguageFallbackTest extends AbstractFrontendTest
 
     /**
      * @test
+     * @group frontend
      */
     public function bothTranslated(): void
     {
@@ -64,6 +66,7 @@ class LanguageFallbackTest extends AbstractFrontendTest
 
     /**
      * @test
+     * @group frontend
      */
     public function bothTranslatedTranslatedChildHidden(): void
     {
@@ -82,6 +85,7 @@ class LanguageFallbackTest extends AbstractFrontendTest
 
     /**
      * @test
+     * @group frontend
      */
     public function childTranslated(): void
     {
@@ -100,6 +104,7 @@ class LanguageFallbackTest extends AbstractFrontendTest
 
     /**
      * @test
+     * @group frontend
      */
     public function containerTranslated(): void
     {
