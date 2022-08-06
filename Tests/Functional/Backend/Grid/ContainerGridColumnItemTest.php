@@ -29,17 +29,12 @@ class ContainerGridColumnItemTest extends FunctionalTestCase
     public function getNewContentUrlContainsUidOfLiveWorkspaceAsContainerParent(): void
     {
         $container = new Container(['uid' => 2, 't3ver_oid' => 1], []);
-        #$pageLayoutContext = $this->getMockClass(PageLayoutContext::class, ['getPageId'], [], '', false);
         $pageLayoutContext = $this->getMockBuilder(PageLayoutContext::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['getPageId'])
             ->getMock();
-
-           # $this->createMockObject(PageLayoutContext::class);
         $pageLayoutContext->expects(self::any())->method('getPageId')->willReturn(3);
-        #$gridColumn = $this->prophesize(GridColumn::class);
         $gridColumn = $this->getMockBuilder(GridColumn::class)->disableOriginalConstructor()
-            #->onlyMethods(['foo'])
             ->getMock();
         $containerGridColumnItem = $this->getAccessibleMock(ContainerGridColumnItem::class, ['foo'], [], '', false);
         $containerGridColumnItem->_set('container', $container);

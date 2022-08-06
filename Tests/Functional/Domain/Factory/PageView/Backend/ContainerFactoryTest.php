@@ -23,7 +23,7 @@ class ContainerFactoryTest extends FunctionalTestCase
     protected $typo3MajorVersion;
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
@@ -31,7 +31,7 @@ class ContainerFactoryTest extends FunctionalTestCase
     ];
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $coreExtensionsToLoad = ['workspaces'];
 

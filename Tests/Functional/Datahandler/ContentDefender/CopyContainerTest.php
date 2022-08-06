@@ -16,7 +16,7 @@ use B13\Container\Tests\Functional\Datahandler\DatahandlerTest;
 class CopyContainerTest extends DatahandlerTest
 {
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',

@@ -14,7 +14,7 @@ namespace B13\Container\Tests\Functional\Integrity;
 class SortingWithContentDefenderTest extends SortingTest
 {
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',

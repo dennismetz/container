@@ -21,7 +21,7 @@ class ContentStorageTest extends FunctionalTestCase
 {
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
@@ -29,7 +29,7 @@ class ContentStorageTest extends FunctionalTestCase
     ];
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $coreExtensionsToLoad = ['workspaces'];
 

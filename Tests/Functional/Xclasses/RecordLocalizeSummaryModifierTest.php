@@ -20,7 +20,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class RecordLocalizeSummaryModifierTest extends FunctionalTestCase
 {
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',

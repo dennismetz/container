@@ -34,7 +34,7 @@ abstract class DatahandlerTest extends FunctionalTestCase
     protected $backendUser;
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
@@ -42,7 +42,7 @@ abstract class DatahandlerTest extends FunctionalTestCase
     ];
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $coreExtensionsToLoad = ['workspaces'];
 

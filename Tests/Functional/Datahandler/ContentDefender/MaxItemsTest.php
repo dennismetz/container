@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 class MaxItemsTest extends DatahandlerTest
 {
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',

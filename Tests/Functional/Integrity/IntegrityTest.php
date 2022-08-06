@@ -26,7 +26,7 @@ class IntegrityTest extends FunctionalTestCase
 {
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
