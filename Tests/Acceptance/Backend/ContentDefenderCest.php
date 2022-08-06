@@ -31,9 +31,11 @@ class ContentDefenderCest
     public function canCreateChildIn2ColsContainerWithNoContentDefenderRestrictionsDefined(BackendTester $I, PageTree $pageTree): void
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithDifferentContainers']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-300 [data-colpos="300-200"]');
         $I->click('Content', '#element-tt_content-300 [data-colpos="300-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
@@ -47,9 +49,11 @@ class ContentDefenderCest
     public function doNotSeeNotAllowedContentElementsInNewContentElementWizard(BackendTester $I, PageTree $pageTree): void
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithContainer']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
         $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
@@ -63,9 +67,11 @@ class ContentDefenderCest
     public function doNotSeeNotAllowedContentElementsInCTypeSelectBoxWhenCreateNewElement(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithContainer']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
         $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
@@ -83,9 +89,11 @@ class ContentDefenderCest
     public function doNotSeeNotAllowedContentElementsInCTypeSelectBoxWhenEditAnElement(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentTCASelectCtype']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-502 a[title="Edit"]');
         $I->click('#element-tt_content-502 a[title="Edit"]');
         $I->see('textmedia', 'select');
         $I->dontSee('Table', 'select');
@@ -97,9 +105,11 @@ class ContentDefenderCest
     public function canSeeNewContentButtonIfMaxitemsIsNotReached(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentDefenderMaxitems']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-402 [data-colpos="402-202"]');
         $I->see('Content', '#element-tt_content-402 [data-colpos="402-202"]');
     }
 
@@ -109,9 +119,11 @@ class ContentDefenderCest
     public function canNotSeeNewContentButtonIfMaxitemsIsReached(BackendTester $I, PageTree $pageTree)
     {
         $I->click('Page');
+        $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentDefenderMaxitems']);
         $I->wait(0.2);
         $I->switchToContentFrame();
+        $I->waitForElement('#element-tt_content-401 [data-colpos="401-202"]');
         $I->dontSee('Content', '#element-tt_content-401 [data-colpos="401-202"]');
     }
 }

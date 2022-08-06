@@ -46,6 +46,11 @@ services:
     shared: false
     public: true
 
+  B13\Container\Listener\ModifyNewContentElementWizardItems:
+    tags:
+      - name: event.listener
+        identifier: 'tx-container-new-content-element-wizard'
+        event: TYPO3\CMS\Backend\Controller\Event\ModifyNewContentElementWizardItemsEvent
   B13\Container\Listener\PageTsConfig:
     tags:
       - name: event.listener
