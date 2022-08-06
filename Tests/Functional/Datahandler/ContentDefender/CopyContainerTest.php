@@ -24,10 +24,6 @@ class CopyContainerTest extends DatahandlerTest
         'typo3conf/ext/content_defender',
     ];
 
-    /**
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \TYPO3\TestingFramework\Core\Exception
-     */
     protected function setUp(): void
     {
         parent::setUp();
