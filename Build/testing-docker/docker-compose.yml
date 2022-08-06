@@ -129,10 +129,10 @@ services:
           set -x
         fi
         php -v | grep '^PHP';
-        if [ ${TYPO3} -eq 10 ]; then
+        if [ ${TYPO3} -eq 11 ]; then
           composer install --no-progress --no-interaction;
         else
-          composer remove typo3/cms* --dev --no-progress --no-interaction && composer require typo3/cms-install:^11.5 typo3/cms-fluid-styled-content:^11.5 typo3/cms-info:^11.5 typo3/cms-workspaces:^11.5 --dev -W --no-progress --no-interaction
+          composer remove typo3/cms* ichhabrecht/content-defender --dev --no-progress --no-interaction && composer require typo3/cms-install:12.*.*@dev typo3/cms-fluid-styled-content:12.*.*@dev typo3/cms-info:12.*.*@dev typo3/cms-workspaces:12.*.*@dev --dev -W --no-progress --no-interaction
         fi
       "
 
