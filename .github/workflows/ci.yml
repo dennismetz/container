@@ -46,7 +46,7 @@ jobs:
 
       - name: Functional Tests with mariadb 12
         if: matrix.TYPO3 == '12'
-        run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s functional -e "--exclude-group=content_defender,frontend"
+        run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s functional -e "--exclude-group=content_defender"
 
       - name: Acceptance Tests 11
         if: matrix.TYPO3 == '11'

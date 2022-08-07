@@ -47,7 +47,7 @@ class WorkspaceTest extends AbstractFrontendTest
     public function childInLiveIsRendered(): void
     {
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.xml');
-        $response = $this->executeFrontendRequest(new InternalRequest());
+        $response = $this->executeFrontendSubRequest(new InternalRequest());
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('<h2 class="">header-live</h2>', $body);
@@ -62,7 +62,7 @@ class WorkspaceTest extends AbstractFrontendTest
     {
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.xml');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
-        $response = $this->executeFrontendRequest(new InternalRequest(), $context);
+        $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('<h2 class="">header-ws</h2>', $body);
@@ -77,7 +77,7 @@ class WorkspaceTest extends AbstractFrontendTest
     {
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child_moved_from_outside.xml');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
-        $response = $this->executeFrontendRequest(new InternalRequest(), $context);
+        $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('><h2>header (200)</h2><div class="header-children"><h6 class="header-children">header-ws</h6><div id="c201" class="frame frame-default frame-type-header frame-layout-0"><header><h2 class="">header-ws</h2></header>', $body);
@@ -97,7 +97,7 @@ class WorkspaceTest extends AbstractFrontendTest
             $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_moved_to_other_page.xml');
         }
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
-        $response = $this->executeFrontendRequest(new InternalRequest(), $context);
+        $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('<h2 class="">header-ws</h2>', $body);
@@ -111,7 +111,7 @@ class WorkspaceTest extends AbstractFrontendTest
     {
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_in_ws_whith_hidden_live_version.xml');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
-        $response = $this->executeFrontendRequest(new InternalRequest(), $context);
+        $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('ws-container-header', $body);
@@ -125,9 +125,6 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function localizedChildInWorkspaceIsRenderendIfContainerWithLocalizationIsMovedToOtherPage(): void
     {
-        if ($this->typo3MajorVersion === 11) {
-            self::markTestSkipped('todo seems bug in core #93445');
-        }
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/other_page.xml');
         $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_pages.xml');
         if ($this->typo3MajorVersion < 11) {
@@ -138,7 +135,7 @@ class WorkspaceTest extends AbstractFrontendTest
             $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_container_moved_to_other_page.xml');
         }
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
-        $response = $this->executeFrontendRequest(new InternalRequest('http://localhost/de/'), $context);
+        $response = $this->executeFrontendSubRequest(new InternalRequest('http://localhost/de/'), $context);
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('<h2 class="">header-ws loc</h2>', $body);
