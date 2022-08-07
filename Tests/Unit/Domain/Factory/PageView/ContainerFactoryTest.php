@@ -14,14 +14,11 @@ namespace B13\Container\Tests\Unit\Domain\Factory\PageView;
 use B13\Container\Domain\Factory\Database;
 use B13\Container\Domain\Factory\PageView\ContainerFactory;
 use B13\Container\Tca\Registry;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ContainerFactoryTest extends UnitTestCase
 {
-    use ProphecyTrait;
-
     protected bool $resetSingletonInstances = true;
 
     /**
@@ -29,14 +26,17 @@ class ContainerFactoryTest extends UnitTestCase
      */
     public function containerByUidReturnsNullIfNoRecordInDatabaseIsFound(): void
     {
-        $database = $this->prophesize(Database::class);
-        $database->fetchOneRecord(1)->willReturn(null);
-        $tcaRegistry = $this->prophesize(Registry::class);
-        $context = $this->prophesize(Context::class);
+        $database = $this->getMockBuilder(Database::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['fetchOneRecord'])
+            ->getMock();
+        $database->expects(self::once())->method('fetchOneRecord')->with(1)->willReturn(null);
+        $tcaRegistry = $this->getMockBuilder(Registry::class)->getMock();
+        $context = $this->getMockBuilder(Context::class)->getMock();
         $containerFactory = $this->getAccessibleMock(
             ContainerFactory::class,
             ['foo'],
-            ['database' => $database->reveal(), 'tcaRegistry' => $tcaRegistry->reveal(), 'context' => $context->reveal()]
+            ['database' => $database, 'tcaRegistry' => $tcaRegistry, 'context' => $context]
         );
         self::assertNull($containerFactory->_call('containerByUid', 1));
     }

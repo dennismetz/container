@@ -33,8 +33,10 @@ class UsedRecordsTest extends FunctionalTestCase
     protected function getPageLayoutView(): PageLayoutView
     {
         if ((new Typo3Version())->getMajorVersion() < 11) {
-            $eventDispatcher = $this->prophesize(EventDispatcher::class);
-            return new PageLayoutView($eventDispatcher->reveal());
+            $eventDispatcher = $this->getMockBuilder(EventDispatcher::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+            return new PageLayoutView($eventDispatcher);
         }
         return new PageLayoutView();
     }
