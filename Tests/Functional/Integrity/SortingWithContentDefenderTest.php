@@ -27,7 +27,7 @@ class SortingWithContentDefenderTest extends SortingTest
      */
     public function childBeforeContainerIsSortedAfterContainerEvenIfCTypeDisallowedByContentDefender(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/SortingWithContentDefender/disallowed_child_is_before_container.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/SortingWithContentDefender/disallowed_child_is_before_container.csv');
         $errors = $this->sorting->run(false);
         self::assertTrue(count($errors) === 1, 'should get one error');
         $rows = $this->getContentsByUid();

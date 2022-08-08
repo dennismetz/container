@@ -44,11 +44,11 @@ class BackendContainerEnvironment extends BackendEnvironment
             'SYS' => ['features' => ['fluidBasedPageModule' => false]],
         ],
         'xmlDatabaseFixtures' => [
-            'EXT:container/Tests/Acceptance/Fixtures/be_users.xml',
-            'EXT:container/Tests/Acceptance/Fixtures/pages.xml',
-            'EXT:container/Tests/Acceptance/Fixtures/sys_workspace.xml',
-            'EXT:container/Tests/Acceptance/Fixtures/tt_content.xml',
-            'EXT:container/Tests/Acceptance/Fixtures/be_groups.xml',
+            'EXT:container/Tests/Acceptance/Fixtures/be_users.csv',
+            'EXT:container/Tests/Acceptance/Fixtures/pages.csv',
+            'EXT:container/Tests/Acceptance/Fixtures/sys_workspace.csv',
+            'EXT:container/Tests/Acceptance/Fixtures/tt_content.csv',
+            'EXT:container/Tests/Acceptance/Fixtures/be_groups.csv',
         ],
     ];
 

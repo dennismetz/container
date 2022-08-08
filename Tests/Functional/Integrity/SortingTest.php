@@ -56,7 +56,7 @@ class SortingTest extends FunctionalTestCase
      */
     public function childBeforeContainerIsSortedAfterContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/child_is_before_container.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/child_is_before_container.csv');
         $errors = $this->sorting->run(false);
         self::assertTrue(count($errors) === 1, 'should get one error');
         $rows = $this->getContentsByUid();
@@ -68,7 +68,7 @@ class SortingTest extends FunctionalTestCase
      */
     public function childSecondColIsSortedAfterChildInFirstCol(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/child_in_second_col_is_before_child_in_first_col.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/child_in_second_col_is_before_child_in_first_col.csv');
         $errors = $this->sorting->run(false);
         self::assertTrue(count($errors) === 1, 'should get one error');
         $rows = $this->getContentsByUid();
@@ -80,7 +80,7 @@ class SortingTest extends FunctionalTestCase
      */
     public function translatedChildInFreeModeBeforeContainerIsSortedAfterContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/translated_child_in_free_mode_is_before_container.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/Sorting/translated_child_in_free_mode_is_before_container.csv');
         $errors = $this->sorting->run(false);
         self::assertTrue(count($errors) === 1, 'should get one error');
         $rows = $this->getContentsByUid();

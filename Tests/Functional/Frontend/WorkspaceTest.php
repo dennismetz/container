@@ -30,7 +30,7 @@ class WorkspaceTest extends AbstractFrontendTest
     {
         parent::setUp();
 
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/setup.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/setup.csv');
         $this->setUpFrontendRootPage(
             1,
             [
@@ -46,7 +46,7 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function childInLiveIsRendered(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.csv');
         $response = $this->executeFrontendSubRequest(new InternalRequest());
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
@@ -60,7 +60,7 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function childInWorkspaceIsRendered(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child.csv');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
         $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
@@ -75,7 +75,7 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function childInWorkspaceIsRenderedIfMovedFromOutsideContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child_moved_from_outside.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_with_ws_child_moved_from_outside.csv');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
         $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
@@ -90,11 +90,11 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function childInWorkspaceIsRenderendIfContainerIsMovedToOtherPage(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/other_page.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/other_page.csv');
         if ($this->typo3MajorVersion < 11) {
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/container_moved_to_other_page.xml');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/container_moved_to_other_page.csv');
         } else {
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_moved_to_other_page.xml');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_moved_to_other_page.csv');
         }
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
         $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
@@ -109,7 +109,7 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function containerInWorkspaceIsRenderedWhenLiveVersionIsHidden(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_in_ws_whith_hidden_live_version.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_in_ws_whith_hidden_live_version.csv');
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
         $response = $this->executeFrontendSubRequest(new InternalRequest(), $context);
         $body = (string)$response->getBody();
@@ -125,14 +125,14 @@ class WorkspaceTest extends AbstractFrontendTest
      */
     public function localizedChildInWorkspaceIsRenderendIfContainerWithLocalizationIsMovedToOtherPage(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/other_page.xml');
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_pages.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/other_page.csv');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_pages.csv');
         if ($this->typo3MajorVersion < 11) {
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/container_moved_to_other_page.xml');
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/localized_container_moved_to_other_page.xml');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/container_moved_to_other_page.csv');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/10/localized_container_moved_to_other_page.csv');
         } else {
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_moved_to_other_page.xml');
-            $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_container_moved_to_other_page.xml');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/container_moved_to_other_page.csv');
+            $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Frontend/Fixtures/Workspace/localized_container_moved_to_other_page.csv');
         }
         $context = (new InternalRequestContext())->withWorkspaceId(1)->withBackendUserId(1);
         $response = $this->executeFrontendSubRequest(new InternalRequest('http://localhost/de/'), $context);

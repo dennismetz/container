@@ -48,7 +48,7 @@ class CopyToLanguageSortingTest extends DatahandlerTest
      */
     public function localizeKeepsSorting(array $cmdmap): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_containers.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_containers.csv');
         $this->dataHandler->start([], $cmdmap, $this->backendUser);
         $this->dataHandler->process_cmdmap();
         $translatedContainer1 = $this->fetchOneRecord('t3_origuid', 1);
@@ -67,7 +67,7 @@ class CopyToLanguageSortingTest extends DatahandlerTest
      */
     public function localizeChildAtTopOfContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_child_at_top.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_child_at_top.csv');
         $cmdmap = [
             'tt_content' => [
                 2 => [
@@ -89,7 +89,7 @@ class CopyToLanguageSortingTest extends DatahandlerTest
      */
     public function localizeChildAfterContainerChild(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_child_after_child.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Datahandler/Localization/Fixtures/CopyToLanguageSorting/localize_child_after_child.csv');
         $cmdmap = [
             'tt_content' => [
                 3 => [

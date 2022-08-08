@@ -1,0 +1,17 @@
+"pages"
+,"uid","pid","is_siteroot","title","perms_everybody","sys_language_uid","l10n_parent","l10n_source"
+,1,0,1,"home",17,,,
+,2,1,,"emptyPage",,,,
+,3,1,,"pageWithContainer",17,,,
+,20,1,,"pageWithWorkspace",17,,,
+,21,1,,"pageWithWorkspace-1",17,1,20,20
+,10,1,,"pageWithLocalization",17,,,
+,11,1,,"pageWithLocalization-1",17,1,10,10
+,12,1,,"pageWithLocalizationFreeModeWithContainer",17,,,
+,13,1,,"pageWithLocalizationFreeModeWithContainer-1",17,1,12,12
+,14,1,,"pageWithTranslatedContainer",17,,,
+,15,1,,"pageWithTranslatedContainer-1",17,1,14,14
+,16,1,,"pageWithDifferentContainers",17,,,
+,17,1,,"contentDefenderMaxitems",17,,,
+,18,1,,"contentTCASelectCtype",17,,,
+,22,1,,"pageWithWorkspace-movedContainer",17,,,
