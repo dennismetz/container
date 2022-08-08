@@ -43,7 +43,7 @@ class BackendContainerEnvironment extends BackendEnvironment
         'configurationToUseInTestInstance' => [
             'SYS' => ['features' => ['fluidBasedPageModule' => false]],
         ],
-        'xmlDatabaseFixtures' => [
+        'csvDatabaseFixtures' => [
             'EXT:container/Tests/Acceptance/Fixtures/be_users.csv',
             'EXT:container/Tests/Acceptance/Fixtures/pages.csv',
             'EXT:container/Tests/Acceptance/Fixtures/sys_workspace.csv',
