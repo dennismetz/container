@@ -95,7 +95,8 @@ class IntegrityTest extends FunctionalTestCase
      */
     public function integrityFixDeleteChildrenWithWrongPid(): void
     {
-        $GLOBALS['BE_USER'] = $this->setUpBackendUserFromFixture(1);
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
         $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Integrity/Fixtures/children_with_wrong_pids.csv');
         $integrity = GeneralUtility::makeInstance(Integrity::class);
         $res = $integrity->run();
