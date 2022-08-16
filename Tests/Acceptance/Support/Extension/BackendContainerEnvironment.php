@@ -44,11 +44,11 @@ class BackendContainerEnvironment extends BackendEnvironment
             'SYS' => ['features' => ['fluidBasedPageModule' => false]],
         ],
         'csvDatabaseFixtures' => [
-            'EXT:container/Tests/Acceptance/Fixtures/be_users.csv',
-            'EXT:container/Tests/Acceptance/Fixtures/pages.csv',
-            'EXT:container/Tests/Acceptance/Fixtures/sys_workspace.csv',
-            'EXT:container/Tests/Acceptance/Fixtures/tt_content.csv',
-            'EXT:container/Tests/Acceptance/Fixtures/be_groups.csv',
+            __DIR__ . '/../../Fixtures/be_users.csv',
+            __DIR__ . '/../../Fixtures/pages.csv',
+            __DIR__ . '/../../Fixtures/sys_workspace.csv',
+            __DIR__ . '/../../Fixtures/tt_content.csv',
+            __DIR__ . '/../../Fixtures/be_groups.csv',
         ],
     ];
 
