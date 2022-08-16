@@ -11,7 +11,6 @@ parameters:
     - %currentWorkingDirectory%/Classes/Hooks/TableConfigurationPostProcessing.php
 
   ignoreErrors:
-#    - '#^Cannot call method fetch.*\(\) on Doctrine\\DBAL\\Result\|int\.$#'
     -
       message: '#Method TYPO3\\CMS\\Backend\\View\\PageLayoutView::__construct\(\).* invoked with 1 parameter, 0 required.#'
       path: %currentWorkingDirectory%/Classes/View/ContainerLayoutView.php
