@@ -24,6 +24,7 @@ class SortingWithContentDefenderTest extends SortingTest
 
     /**
      * @test
+     * @group content_defender
      */
     public function childBeforeContainerIsSortedAfterContainerEvenIfCTypeDisallowedByContentDefender(): void
     {
