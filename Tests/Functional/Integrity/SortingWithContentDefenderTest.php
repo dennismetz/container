@@ -11,7 +11,17 @@ namespace B13\Container\Tests\Functional\Integrity;
  * of the License, or any later version.
  */
 
-class SortingWithContentDefenderTest extends SortingTest
+use B13\Container\Domain\Factory\ContainerFactory;
+use B13\Container\Integrity\Database;
+use B13\Container\Integrity\Sorting;
+use B13\Container\Tca\Registry;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Core\Bootstrap;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+
+class SortingWithContentDefenderTest extends FunctionalTestCase
 {
     /**
      * @var non-empty-string[]
@@ -21,6 +31,25 @@ class SortingWithContentDefenderTest extends SortingTest
         'typo3conf/ext/container_example',
         'typo3conf/ext/content_defender',
     ];
+
+    /**
+     * @var sorting
+     */
+    protected $sorting;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
+        Bootstrap::initializeLanguageObject();
+        $context = GeneralUtility::makeInstance(Context::class);
+        $containerRegistry = GeneralUtility::makeInstance(Registry::class);
+        $sortingDatabase = GeneralUtility::makeInstance(Database::class);
+        $factoryDatabase = GeneralUtility::makeInstance(\B13\Container\Domain\Factory\Database::class, $context);
+        $containerFactory = GeneralUtility::makeInstance(ContainerFactory::class, $factoryDatabase, $containerRegistry, $context);
+        $this->sorting = GeneralUtility::makeInstance(Sorting::class, $sortingDatabase, $containerRegistry, $containerFactory);
+    }
 
     /**
      * @test
@@ -33,5 +62,19 @@ class SortingWithContentDefenderTest extends SortingTest
         self::assertTrue(count($errors) === 1, 'should get one error');
         $rows = $this->getContentsByUid();
         self::assertTrue($rows[3]['sorting'] < $rows[2]['sorting'], 'child should be sorted after container');
+    }
+
+    protected function getContentsByUid(): array
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $res = $queryBuilder->select('uid', 'sorting', 'colPos')
+            ->from('tt_content')
+            ->execute()
+            ->fetchAllAssociative();
+        $rows = [];
+        foreach ($res as $row) {
+            $rows[$row['uid']] = $row;
+        }
+        return $rows;
     }
 }
