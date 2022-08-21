@@ -33,12 +33,13 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithDifferentContainers']);
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-300 [data-colpos="300-200"]');
         $I->click('Content', '#element-tt_content-300 [data-colpos="300-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
+        $I->waitForText('Header Only');
         $I->see('Header Only');
         $I->see('Table');
     }
@@ -51,7 +52,7 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithContainer']);
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
         $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
@@ -69,7 +70,7 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'pageWithContainer']);
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
         $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
@@ -78,7 +79,7 @@ class ContentDefenderCest
         $I->waitForText('Header Only');
         $I->click('Header Only');
         $I->switchToContentFrame();
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->see('textmedia', 'select');
         $I->dontSee('Table', 'select');
     }
@@ -91,10 +92,11 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentTCASelectCtype']);
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-502 a[title="Edit"]');
         $I->click('#element-tt_content-502 a[title="Edit"]');
+        $I->waitForElement('#EditDocumentController');
         $I->see('textmedia', 'select');
         $I->dontSee('Table', 'select');
     }
@@ -107,7 +109,8 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentDefenderMaxitems']);
-        $I->wait(0.2);
+        // $I->waitForElement('iframe[name="list_frame"]');
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-402 [data-colpos="402-202"]');
         $I->see('Content', '#element-tt_content-402 [data-colpos="402-202"]');
@@ -121,7 +124,7 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentDefenderMaxitems']);
-        $I->wait(0.2);
+        $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-401 [data-colpos="401-202"]');
         $I->dontSee('Content', '#element-tt_content-401 [data-colpos="401-202"]');
