@@ -29,3 +29,7 @@
 ,602,22,"header","header-outside",,,,,,,,
 ,603,22,"b13-2cols-with-header-container",,,,,,1,600,,4
 ,604,22,"header","header-ws",200,600,,,1,601,,4
+,700,30,"b13-2cols-with-header-container",,,,,,,,,
+,710,31,"b13-2cols-with-header-container",,,,,,,,,
+,711,14,"b13-2cols-with-header-container",,,,710,1,,,710,
+,712,31,"header","headerOfChild",200,710,,,,,,

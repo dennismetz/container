@@ -126,20 +126,20 @@ class LayoutCest
     {
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithContainer']);
+        $pageTree->openPath(['home', 'pageWithContainer-2']);
         $I->wait(0.2);
         $I->switchToContentFrame();
         // header
-        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
-        $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
-        // "[data-colpos="1-200"]" can be attribute of "td" or "div" tag, depends if Fluid based page module is enabled
+        $I->waitForElement('#element-tt_content-700 [data-colpos="700-200"]');
+        $I->click('Content', '#element-tt_content-700 [data-colpos="700-200"]');
+        // "[data-colpos="700-200"]" can be attribute of "td" or "div" tag, depends if Fluid based page module is enabled
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
         $I->waitForText('Header Only');
         $I->click('Header Only');
         $I->switchToContentFrame();
         $I->see('header [200]');
-        $I->see('b13-2cols-with-header-container [1]');
+        $I->see('b13-2cols-with-header-container [700]');
     }
 
     /**
@@ -261,12 +261,12 @@ class LayoutCest
     {
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithTranslatedContainer']);
+        $pageTree->openPath(['home', 'pageWithTranslatedContainer-2']);
         $I->wait(0.2);
         $I->switchToContentFrame();
-        $I->waitForElement('#element-tt_content-212');
+        $I->waitForElement('#element-tt_content-712');
 
-        $I->click('headerOfChild', '#element-tt_content-212');
+        $I->click('headerOfChild', '#element-tt_content-712');
 
         $I->waitForElement('select[name="_langSelector"]');
         $I->selectOption('select[name="_langSelector"]', 'german [NEW]');
