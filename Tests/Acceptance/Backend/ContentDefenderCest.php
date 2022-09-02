@@ -109,7 +109,6 @@ class ContentDefenderCest
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
         $pageTree->openPath(['home', 'contentDefenderMaxitems']);
-        // $I->waitForElement('iframe[name="list_frame"]');
         $I->wait(0.5);
         $I->switchToContentFrame();
         $I->waitForElement('#element-tt_content-402 [data-colpos="402-202"]');
