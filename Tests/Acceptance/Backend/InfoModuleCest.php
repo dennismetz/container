@@ -33,11 +33,12 @@ class InfoModuleCest
     {
         $I->click('Info');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithContainer']);
+        $pageTree->openPath(['home', 'pageWithContainer-6']);
         $I->wait(0.2);
         $I->switchToContentFrame();
         $I->waitForElement('select[name="WebInfoJumpMenu"]');
         $I->selectOption('select[name="WebInfoJumpMenu"]', 'Page TSconfig');
+        $I->waitForElement('select[name="SET[tsconf_parts]"]');
         $I->selectOption('select[name="SET[tsconf_parts]"]', 99);
         $I->see('b13-2cols-with-header-container = EXT:container/Resources/Private/Templates/Container.html');
     }

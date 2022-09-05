@@ -34,11 +34,11 @@ class EditorLayoutCest
     {
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithContainer']);
+        $pageTree->openPath(['home', 'pageWithContainer-5']);
         $I->wait(0.2);
         $I->switchToContentFrame();
         // header
-        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
-        $I->see('Content', '#element-tt_content-1 [data-colpos="1-200"]');
+        $I->waitForElement('#element-tt_content-802 [data-colpos="802-200"]');
+        $I->see('Content', '#element-tt_content-802 [data-colpos="802-200"]');
     }
 }
