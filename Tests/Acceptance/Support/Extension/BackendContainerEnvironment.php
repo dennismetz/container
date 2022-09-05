@@ -55,6 +55,8 @@ class BackendContainerEnvironment extends BackendEnvironment
             __DIR__ . '/../../Fixtures/pageWithLocalizationFreeModeWithContainer.csv',
             __DIR__ . '/../../Fixtures/pageWithTranslatedContainer.csv',
             __DIR__ . '/../../Fixtures/pageWithTranslatedContainer-2.csv',
+            __DIR__ . '/../../Fixtures/pageWithContainer-3.csv',
+            __DIR__ . '/../../Fixtures/pageWithContainer-4.csv',
             __DIR__ . '/../../Fixtures/pageWithWorkspace.csv',
             __DIR__ . '/../../Fixtures/pageWithWorkspace-movedContainer.csv',
             __DIR__ . '/../../Fixtures/pages.csv',

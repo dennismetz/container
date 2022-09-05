@@ -51,11 +51,11 @@ class ContentDefenderCest
     {
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithContainer']);
+        $pageTree->openPath(['home', 'pageWithContainer-3']);
         $I->wait(0.5);
         $I->switchToContentFrame();
-        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
-        $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
+        $I->waitForElement('#element-tt_content-800 [data-colpos="800-200"]');
+        $I->click('Content', '#element-tt_content-800 [data-colpos="800-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
         $I->waitForText('Header Only');
@@ -69,11 +69,11 @@ class ContentDefenderCest
     {
         $I->click('Page');
         $I->waitForElement('#typo3-pagetree-tree .nodes .node');
-        $pageTree->openPath(['home', 'pageWithContainer']);
+        $pageTree->openPath(['home', 'pageWithContainer-4']);
         $I->wait(0.5);
         $I->switchToContentFrame();
-        $I->waitForElement('#element-tt_content-1 [data-colpos="1-200"]');
-        $I->click('Content', '#element-tt_content-1 [data-colpos="1-200"]');
+        $I->waitForElement('#element-tt_content-801 [data-colpos="801-200"]');
+        $I->click('Content', '#element-tt_content-801 [data-colpos="801-200"]');
         $I->switchToIFrame();
         $I->waitForElement('.modal-dialog');
         $I->waitForText('Header Only');
