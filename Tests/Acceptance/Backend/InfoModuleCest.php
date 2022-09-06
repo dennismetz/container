@@ -13,6 +13,7 @@ namespace B13\Container\Tests\Acceptance\Backend;
 
 use B13\Container\Tests\Acceptance\Support\BackendTester;
 use B13\Container\Tests\Acceptance\Support\PageTree;
+use TYPO3\CMS\Core\Information\Typo3Version;
 
 class InfoModuleCest
 {
@@ -36,10 +37,22 @@ class InfoModuleCest
         $pageTree->openPath(['home', 'pageWithContainer-6']);
         $I->wait(0.2);
         $I->switchToContentFrame();
-        $I->waitForElement('select[name="WebInfoJumpMenu"]');
-        $I->selectOption('select[name="WebInfoJumpMenu"]', 'Page TSconfig');
-        $I->waitForElement('select[name="SET[tsconf_parts]"]');
-        $I->selectOption('select[name="SET[tsconf_parts]"]', 99);
+
+        $typo3Version = new Typo3Version();
+        if ($typo3Version->getMajorVersion() === 10) {
+            $name = 'WebInfoJumpMenu';
+        } else {
+            $name = 'moduleMenu';
+        }
+        $I->waitForElement('select[name="' . $name . '"]');
+        $I->selectOption('select[name="' . $name . '"]', 'Page TSconfig');
+        if ($typo3Version->getMajorVersion() === 10) {
+            $name = 'SET[tsconf_parts]';
+        } else {
+            $name = 'tsconf_parts';
+        }
+        $I->waitForElement('select[name="' . $name . '"]');
+        $I->selectOption('select[name="' . $name . '"]', 99);
         $I->see('b13-2cols-with-header-container = EXT:container/Resources/Private/Templates/Container.html');
     }
 }
