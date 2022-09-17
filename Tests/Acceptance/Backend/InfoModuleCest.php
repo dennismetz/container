@@ -39,20 +39,17 @@ class InfoModuleCest
         $I->switchToContentFrame();
 
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() === 10) {
-            $name = 'WebInfoJumpMenu';
+        if ($typo3Version->getMajorVersion() < 12) {
+            $selectbox1Name = 'WebInfoJumpMenu';
+            $selectbox2Name = 'SET[tsconf_parts]';
         } else {
-            $name = 'moduleMenu';
+            $selectbox1Name = 'moduleMenu';
+            $selectbox2Name = 'tsconf_parts';
         }
-        $I->waitForElement('select[name="' . $name . '"]');
-        $I->selectOption('select[name="' . $name . '"]', 'Page TSconfig');
-        if ($typo3Version->getMajorVersion() === 10) {
-            $name = 'SET[tsconf_parts]';
-        } else {
-            $name = 'tsconf_parts';
-        }
-        $I->waitForElement('select[name="' . $name . '"]');
-        $I->selectOption('select[name="' . $name . '"]', 99);
+        $I->waitForElement('select[name="' . $selectbox1Name . '"]');
+        $I->selectOption('select[name="' . $selectbox1Name . '"]', 'Page TSconfig');
+        $I->waitForElement('select[name="' . $selectbox2Name . '"]');
+        $I->selectOption('select[name="' . $selectbox2Name . '"]', 99);
         $I->see('b13-2cols-with-header-container = EXT:container/Resources/Private/Templates/Container.html');
     }
 }
