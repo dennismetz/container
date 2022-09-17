@@ -7,8 +7,8 @@
     convertErrorsToExceptions="true"
     convertWarningsToExceptions="true"
     forceCoversAnnotation="false"
-    stopOnError="false"
-    stopOnFailure="false"
+    stopOnError="true"
+    stopOnFailure="true"
     stopOnIncomplete="false"
     stopOnSkipped="false"
     verbose="false"
@@ -23,6 +23,5 @@
     <php>
         <ini name="display_errors" value="1" />
         <env name="TYPO3_CONTEXT" value="Testing" />
-        <const name="TYPO3_TESTING_FUNCTIONAL_REMOVE_ERROR_HANDLER" value="true" />
     </php>
 </phpunit>
