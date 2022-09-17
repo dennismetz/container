@@ -23,9 +23,9 @@ class UsedRecordsTest extends FunctionalTestCase
 {
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];
@@ -33,8 +33,10 @@ class UsedRecordsTest extends FunctionalTestCase
     protected function getPageLayoutView(): PageLayoutView
     {
         if ((new Typo3Version())->getMajorVersion() < 11) {
-            $eventDispatcher = $this->prophesize(EventDispatcher::class);
-            return new PageLayoutView($eventDispatcher->reveal());
+            $eventDispatcher = $this->getMockBuilder(EventDispatcher::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+            return new PageLayoutView($eventDispatcher);
         }
         return new PageLayoutView();
     }
@@ -44,7 +46,7 @@ class UsedRecordsTest extends FunctionalTestCase
      */
     public function addContainerChildrenReturnsTrueIfChildrenInContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container.csv');
         $pageLayout = $this->getPageLayoutView();
         $usedRecords = GeneralUtility::makeInstance(UsedRecords::class);
         $record = $this->fetchOneRecordByUid(2);
@@ -57,7 +59,7 @@ class UsedRecordsTest extends FunctionalTestCase
      */
     public function addContainerChildrenReturnsFalseIfChildrenHasWrongPid(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container_wrong_pid.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container_wrong_pid.csv');
         $pageLayout = $this->getPageLayoutView();
         $usedRecords = GeneralUtility::makeInstance(UsedRecords::class);
         $record = $this->fetchOneRecordByUid(2);
@@ -70,7 +72,7 @@ class UsedRecordsTest extends FunctionalTestCase
      */
     public function addContainerChildrenReturnsFalseIfChildrenHasWrongColPos(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container_wrong_colpos.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_in_container_wrong_colpos.csv');
         $pageLayout = $this->getPageLayoutView();
         $usedRecords = GeneralUtility::makeInstance(UsedRecords::class);
         $record = $this->fetchOneRecordByUid(2);
@@ -83,7 +85,7 @@ class UsedRecordsTest extends FunctionalTestCase
      */
     public function addContainerChildrenReturnsFalseIfRecordNotInContainer(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_not_in_container.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/children_not_in_container.csv');
         $pageLayout = $this->getPageLayoutView();
         $usedRecords = GeneralUtility::makeInstance(UsedRecords::class);
         $record = $this->fetchOneRecordByUid(2);
@@ -96,7 +98,7 @@ class UsedRecordsTest extends FunctionalTestCase
      */
     public function addContainerChildrenReturnsTrueForLocalizedContent(): void
     {
-        $this->importDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/localized_content.xml');
+        $this->importCSVDataSet(ORIGINAL_ROOT . 'typo3conf/ext/container/Tests/Functional/Hooks/Fixtures/UsedRecords/localized_content.csv');
         $pageLayout = $this->getPageLayoutView();
         $usedRecords = GeneralUtility::makeInstance(UsedRecords::class);
         $record = $this->fetchOneRecordByUid(4);

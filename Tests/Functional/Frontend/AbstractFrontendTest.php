@@ -15,21 +15,21 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 abstract class AbstractFrontendTest extends FunctionalTestCase
 {
     /**
-     * @var string[]
+     * @var non-empty-string[]
      */
-    protected $coreExtensionsToLoad = ['core', 'frontend', 'workspaces', 'fluid_styled_content'];
+    protected array $coreExtensionsToLoad = ['core', 'frontend', 'workspaces', 'fluid_styled_content'];
 
     /**
-     * @var string[]
+     * @var array<string, non-empty-string>
      */
-    protected $pathsToLinkInTestInstance = [
+    protected array $pathsToLinkInTestInstance = [
         'typo3conf/ext/container/Build/sites' => 'typo3conf/sites',
     ];
 
     /**
-     * @var array
+     * @var non-empty-string[]
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/container',
         'typo3conf/ext/container_example',
     ];

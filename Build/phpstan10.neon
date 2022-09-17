@@ -16,9 +16,6 @@ parameters:
       message: '#Constant ORIGINAL_ROOT not found.#'
       path: %currentWorkingDirectory%/Tests
     -
-      message: '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy::.*#'
-      path: %currentWorkingDirectory%/Tests
-    -
       message: '#PHPDoc tag @.*#'
       path: %currentWorkingDirectory%/Tests/Acceptance/Support/_generated/BackendTesterActions.php
     -
@@ -28,3 +25,9 @@ parameters:
     - '#Parameter \$event of method B13\\Container\\Listener\\BootCompleted::__invoke\(\) has invalid typehint type TYPO3\\CMS\\Core\\Core\\Event\\BootCompletedEvent.#'
     - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\Driver\\ResultStatement\|int.#'
     - '#Cannot call method fetchAssociative\(\) on Doctrine\\DBAL\\Driver\\ResultStatement\|int.#'
+    -
+      message: '#Class TYPO3\\CMS\\Frontend\\ContentObject\\RecordsContentObject constructor invoked with 0 parameters, 1 required.#'
+      path: %currentWorkingDirectory%/Classes/DataProcessing/ContainerProcessor.php
+    -
+      message: '#Call to an undefined method TYPO3\\CMS\\Frontend\\ContentObject\\RecordsContentObject::setContentObjectRenderer\(\).#'
+      path: %currentWorkingDirectory%/Classes/DataProcessing/ContainerProcessor.php
