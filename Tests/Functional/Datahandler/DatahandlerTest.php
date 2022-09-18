@@ -17,8 +17,9 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-abstract class DatahandlerTest extends \B13\Container\Tests\Wrapper\FunctionalTestCaseWorkspaces
+abstract class DatahandlerTest extends FunctionalTestCase
 {
     protected $typo3MajorVersion;
 
@@ -31,6 +32,19 @@ abstract class DatahandlerTest extends \B13\Container\Tests\Wrapper\FunctionalTe
      * @var BackendUserAuthentication
      */
     protected $backendUser;
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $coreExtensionsToLoad = ['workspaces'];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {

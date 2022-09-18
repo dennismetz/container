@@ -10,10 +10,29 @@ namespace B13\Container\Tests\Functional\Frontend;
  * of the License, or any later version.
  */
 
-use B13\Container\Tests\Wrapper\FunctionalTestCaseFrontend;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-abstract class AbstractFrontendTest extends FunctionalTestCaseFrontend
+abstract class AbstractFrontendTest extends FunctionalTestCase
 {
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $coreExtensionsToLoad = ['core', 'frontend', 'workspaces', 'fluid_styled_content'];
+
+    /**
+     * @var array<string, non-empty-string>
+     */
+    protected array $pathsToLinkInTestInstance = [
+        'typo3conf/ext/container/Build/sites' => 'typo3conf/sites',
+    ];
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
 
     /**
      * @param string $string

@@ -17,9 +17,11 @@ use B13\Container\Hooks\UsedRecords;
 use B13\Container\Tca\Registry;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class UsedRecordsTest extends \B13\Container\Tests\Wrapper\UnitTestCase
+class UsedRecordsTest extends UnitTestCase
 {
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @test

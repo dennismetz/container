@@ -13,9 +13,11 @@ namespace B13\Container\Tests\Unit\Tca;
 
 use B13\Container\Tca\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class RegistryTest extends \B13\Container\Tests\Wrapper\UnitTestCase
+class RegistryTest extends UnitTestCase
 {
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @test

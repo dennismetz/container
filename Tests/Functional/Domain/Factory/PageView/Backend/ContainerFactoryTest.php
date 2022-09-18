@@ -11,16 +11,29 @@ namespace B13\Container\Tests\Functional\Domain\Factory\PageView\Backend;
  */
 
 use B13\Container\Domain\Factory\PageView\Backend\ContainerFactory;
-use B13\Container\Tests\Wrapper\FunctionalTestCaseWorkspaces;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class ContainerFactoryTest extends FunctionalTestCaseWorkspaces
+class ContainerFactoryTest extends FunctionalTestCase
 {
     protected $typo3MajorVersion;
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $coreExtensionsToLoad = ['workspaces'];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {

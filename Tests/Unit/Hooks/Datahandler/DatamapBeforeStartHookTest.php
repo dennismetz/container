@@ -16,9 +16,12 @@ use B13\Container\Domain\Service\ContainerService;
 use B13\Container\Hooks\Datahandler\Database;
 use B13\Container\Hooks\Datahandler\DatamapBeforeStartHook;
 use B13\Container\Tca\Registry;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class DatamapBeforeStartHookTest extends \B13\Container\Tests\Wrapper\UnitTestCase
+class DatamapBeforeStartHookTest extends UnitTestCase
 {
+    protected bool $resetSingletonInstances = true;
+
     /**
      * @test
      */

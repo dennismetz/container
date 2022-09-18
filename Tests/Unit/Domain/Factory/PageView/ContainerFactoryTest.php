@@ -15,9 +15,12 @@ use B13\Container\Domain\Factory\Database;
 use B13\Container\Domain\Factory\PageView\ContainerFactory;
 use B13\Container\Tca\Registry;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class ContainerFactoryTest extends \B13\Container\Tests\Wrapper\UnitTestCase
+class ContainerFactoryTest extends UnitTestCase
 {
+    protected bool $resetSingletonInstances = true;
+
     /**
      * @test
      */

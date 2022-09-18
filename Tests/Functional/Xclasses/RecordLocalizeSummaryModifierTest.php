@@ -15,10 +15,18 @@ namespace B13\Container\Tests\Functional\Xclasses;
 use B13\Container\Tca\Registry;
 use B13\Container\Xclasses\RecordLocalizeSummaryModifier;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use B13\Container\Tests\Wrapper\FunctionalTestCase;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class RecordLocalizeSummaryModifierTest extends FunctionalTestCase
 {
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
+
     /**
      * @test
      */

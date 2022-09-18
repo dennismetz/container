@@ -15,14 +15,23 @@ use B13\Container\Domain\Factory\ContainerFactory;
 use B13\Container\Integrity\Database;
 use B13\Container\Integrity\Sorting;
 use B13\Container\Tca\Registry;
-use B13\Container\Tests\Wrapper\FunctionalTestCaseContentDefender;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Bootstrap;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class SortingWithContentDefenderTest extends FunctionalTestCaseContentDefender
+class SortingWithContentDefenderTest extends FunctionalTestCase
 {
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+        'typo3conf/ext/content_defender',
+    ];
+
     /**
      * @var sorting
      */

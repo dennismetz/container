@@ -12,16 +12,24 @@ namespace B13\Container\Tests\Functional\Hooks;
  */
 
 use B13\Container\Hooks\UsedRecords;
-use B13\Container\Tests\Wrapper\FunctionalTestCase;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class UsedRecordsTest extends FunctionalTestCase
 {
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
+
     protected function getPageLayoutView(): PageLayoutView
     {
         if ((new Typo3Version())->getMajorVersion() < 11) {

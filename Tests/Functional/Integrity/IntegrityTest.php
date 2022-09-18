@@ -14,16 +14,24 @@ namespace B13\Container\Tests\Functional\Integrity;
 use B13\Container\Integrity\Error\WrongPidError;
 use B13\Container\Integrity\Integrity;
 use B13\Container\Integrity\IntegrityFix;
-use B13\Container\Tests\Wrapper\FunctionalTestCase;
 use TYPO3\CMS\Backend\View\BackendLayout\BackendLayout;
 use TYPO3\CMS\Backend\View\BackendLayout\ContentFetcher;
 use TYPO3\CMS\Backend\View\PageLayoutContext;
 use TYPO3\CMS\Core\Core\Bootstrap;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class IntegrityTest extends FunctionalTestCase
 {
+
+    /**
+     * @var non-empty-string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+        'typo3conf/ext/container_example',
+    ];
 
     /**
      * @test

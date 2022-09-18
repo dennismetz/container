@@ -13,11 +13,15 @@ namespace B13\Container\Tests\Functional\Backend\Grid;
 
 use B13\Container\Backend\Grid\ContainerGridColumn;
 use B13\Container\Domain\Model\Container;
-use B13\Container\Tests\Wrapper\FunctionalTestCaseSimple;
 use TYPO3\CMS\Backend\View\PageLayoutContext;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class ContainerGridColumnTest extends FunctionalTestCaseSimple
+class ContainerGridColumnTest extends FunctionalTestCase
 {
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/container',
+    ];
+
     /**
      * @test
      */
