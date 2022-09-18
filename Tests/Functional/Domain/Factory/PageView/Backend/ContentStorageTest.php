@@ -12,27 +12,13 @@ namespace B13\Container\Tests\Functional\Domain\Factory\PageView\Backend;
 
 use B13\Container\Domain\Factory\Database;
 use B13\Container\Domain\Factory\PageView\Backend\ContentStorage;
+use B13\Container\Tests\Wrapper\FunctionalTestCaseWorkspaces;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class ContentStorageTest extends FunctionalTestCase
+class ContentStorageTest extends FunctionalTestCaseWorkspaces
 {
-
-    /**
-     * @var non-empty-string[]
-     */
-    protected array $testExtensionsToLoad = [
-        'typo3conf/ext/container',
-        'typo3conf/ext/container_example',
-    ];
-
-    /**
-     * @var non-empty-string[]
-     */
-    protected array $coreExtensionsToLoad = ['workspaces'];
-
     /**
      * @test
      */

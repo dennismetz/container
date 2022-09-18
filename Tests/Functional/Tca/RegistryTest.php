@@ -14,19 +14,12 @@ namespace B13\Container\Tests\Functional\Tca;
 
 use B13\Container\Tca\ContainerConfiguration;
 use B13\Container\Tca\Registry;
+use B13\Container\Tests\Wrapper\FunctionalTestCaseSimple;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class RegistryTest extends FunctionalTestCase
+class RegistryTest extends FunctionalTestCaseSimple
 {
-    /**
-     * @var non-empty-string[]
-     */
-    protected array $testExtensionsToLoad = [
-        'typo3conf/ext/container',
-    ];
-
     /**
      * @test
      */

@@ -11,20 +11,10 @@ namespace B13\Container\Tests\Functional\Datahandler\ContentDefender;
  * of the License, or any later version.
  */
 
-use B13\Container\Tests\Functional\Datahandler\DatahandlerTest;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 class MaxItemsTest extends DatahandlerTest
 {
-    /**
-     * @var non-empty-string[]
-     */
-    protected array $testExtensionsToLoad = [
-        'typo3conf/ext/container',
-        'typo3conf/ext/container_example',
-        'typo3conf/ext/content_defender',
-    ];
-
     protected function setUp(): void
     {
         parent::setUp();

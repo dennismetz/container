@@ -17,12 +17,9 @@ use B13\Container\Domain\Model\Container;
 use B13\Container\Domain\Service\ContainerService;
 use B13\Container\Tca\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class ContainerServiceTest extends UnitTestCase
+class ContainerServiceTest extends \B13\Container\Tests\Wrapper\UnitTestCase
 {
-    protected bool $resetSingletonInstances = true;
-
     protected array $allContainerColumns = [200, 201, 202];
 
     /**

@@ -15,6 +15,9 @@
 use TYPO3\CMS\Core\Information\Typo3Version;
 
 call_user_func(function () {
+    if ((new Typo3Version())->getMajorVersion() < 11) {
+        class_alias(\B13\Container\Tests\Wrapper\UnitTestCaseV10::class, \B13\Container\Tests\Wrapper\UnitTestCase::class);
+    }
     $testbase = new \TYPO3\TestingFramework\Core\Testbase();
 
     // These if's are for core testing (package typo3/cms) only. cms-composer-installer does

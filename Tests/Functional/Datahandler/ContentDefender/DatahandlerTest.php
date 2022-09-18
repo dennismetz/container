@@ -1,6 +1,6 @@
 <?php
 
-namespace B13\Container\Tests\Functional\Datahandler;
+namespace B13\Container\Tests\Functional\Datahandler\ContentDefender;
 
 /*
  * This file is part of TYPO3 CMS-based extension "container" by b13.
@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-abstract class DatahandlerTest extends \B13\Container\Tests\Wrapper\FunctionalTestCaseWorkspaces
+abstract class DatahandlerTest extends \B13\Container\Tests\Wrapper\FunctionalTestCaseContentDefender
 {
     protected $typo3MajorVersion;
 

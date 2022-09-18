@@ -13,11 +13,9 @@ namespace B13\Container\Tests\Unit\Xclasses;
 
 use B13\Container\Tca\Registry;
 use B13\Container\Xclasses\RecordLocalizeSummaryModifier;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class RecordLocalizeSummaryModifierTest extends UnitTestCase
+class RecordLocalizeSummaryModifierTest extends \B13\Container\Tests\Wrapper\UnitTestCase
 {
-    protected bool $resetSingletonInstances = true;
 
     /**
      * @test
