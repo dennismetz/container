@@ -15,6 +15,7 @@ namespace B13\Container\DataProcessing;
 use B13\Container\Domain\Factory\Exception;
 use B13\Container\Domain\Factory\PageView\Frontend\ContainerFactory;
 use B13\Container\Domain\Model\Container;
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
@@ -114,6 +115,7 @@ class ContainerProcessor implements DataProcessorInterface
         } else {
             $contentRecordRenderer = new RecordsContentObject();
             $contentRecordRenderer->setContentObjectRenderer($cObj);
+            $contentRecordRenderer->setRequest($this->getRequest());
         }
         $conf = [
             'tables' => 'tt_content',
@@ -135,5 +137,10 @@ class ContainerProcessor implements DataProcessorInterface
         }
         $processedData[$as] = $children;
         return $processedData;
+    }
+
+    protected function getRequest(): ServerRequest
+    {
+        return $GLOBALS['TYPO3_REQUEST'];
     }
 }
