@@ -96,7 +96,6 @@ class BackendContainerEnvironment extends BackendEnvironment
         } else {
             parent::_initialize();
         }
-
     }
 
     protected function importCSVDataSetV10(string $path): void
