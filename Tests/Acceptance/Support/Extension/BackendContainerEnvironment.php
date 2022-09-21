@@ -85,11 +85,11 @@ class BackendContainerEnvironment extends BackendEnvironment
             ];
         }
         if ($typo3Version->getMajorVersion() < 11) {
-            $backup = $this->config['csvDatabaseFixtures'];
-            unset($this->config['csvDatabaseFixtures']);
+            $backup = $this->localConfig['csvDatabaseFixtures'];
+            unset($this->localConfig['csvDatabaseFixtures']);
             parent::_initialize();
-            $this->config['csvDatabaseFixtures'] = $backup;
-            foreach ($this->config['csvDatabaseFixtures'] as $fixture) {
+            $this->localConfig['csvDatabaseFixtures'] = $backup;
+            foreach ($this->localConfig['csvDatabaseFixtures'] as $fixture) {
                 // uses $connection->getSchemaManager() instead of $connection->createSchemaManager()
                 $this->importCSVDataSetV10($fixture);
             }
