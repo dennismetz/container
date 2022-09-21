@@ -11,9 +11,12 @@ namespace B13\Container\Tests\Acceptance\Support\Extension;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Acceptance\Extension\BackendEnvironment;
+use TYPO3\TestingFramework\Core\Functional\Framework\DataHandling\DataSet;
+use TYPO3\TestingFramework\Core\Testbase;
 
 class BackendContainerEnvironment extends BackendEnvironment
 {
@@ -75,11 +78,45 @@ class BackendContainerEnvironment extends BackendEnvironment
         }
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
         if ($typo3Version->getMajorVersion() === 12) {
+            // without content_defender
             $this->localConfig['testExtensionsToLoad'] = [
                 'typo3conf/ext/container',
                 'typo3conf/ext/container_example',
             ];
         }
-        parent::_initialize();
+        if ($typo3Version->getMajorVersion() < 11) {
+            $backup = $this->config['csvDatabaseFixtures'];
+            unset($this->config['csvDatabaseFixtures']);
+            parent::_initialize();
+            $this->config['csvDatabaseFixtures'] = $backup;
+            foreach ($this->config['csvDatabaseFixtures'] as $fixture) {
+                // uses $connection->getSchemaManager() instead of $connection->createSchemaManager()
+                $this->importCSVDataSetV10($fixture);
+            }
+        } else {
+            parent::_initialize();
+        }
+
+    }
+
+    protected function importCSVDataSetV10(string $path): void
+    {
+        $dataSet = DataSet::read($path, true);
+        foreach ($dataSet->getTableNames() as $tableName) {
+            $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($tableName);
+            foreach ($dataSet->getElements($tableName) as $element) {
+                // Some DBMS like postgresql are picky about inserting blob types with correct cast, setting
+                // types correctly (like Connection::PARAM_LOB) allows doctrine to create valid SQL
+                $types = [];
+                // use getSchemaManager instead of createSchemaManager
+                $tableDetails = $connection->getSchemaManager()->listTableDetails($tableName);
+                foreach ($element as $columnName => $columnValue) {
+                    $types[] = $tableDetails->getColumn($columnName)->getType()->getBindingType();
+                }
+                // Insert the row
+                $connection->insert($tableName, $element, $types);
+            }
+            Testbase::resetTableSequences($connection, $tableName);
+        }
     }
 }
