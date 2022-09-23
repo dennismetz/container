@@ -41,10 +41,12 @@ call_user_func(static function () {
     }
     // else, if enabled we register container previewRenderer in registry foreach container CType
 
-    // LocalizationController Xclass
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Controller\Page\LocalizationController::class] = [
-        'className' => \B13\Container\Xclasses\LocalizationController::class,
-    ];
+    if ($typo3Version->getMajorVersion() < 12) {
+        // LocalizationController Xclass
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Controller\Page\LocalizationController::class] = [
+            'className' => \B13\Container\Xclasses\LocalizationController::class,
+        ];
+    }
 
     if ($typo3Version->getMajorVersion() < 12) {
         // remove container colPos from "unused" page-elements
