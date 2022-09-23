@@ -9,6 +9,13 @@ parameters:
     - %currentWorkingDirectory%/Classes/ContentDefender
     - %currentWorkingDirectory%/Tests/Functional/Datahandler/ContentDefender
     - %currentWorkingDirectory%/Classes/Hooks/TableConfigurationPostProcessing.php
+    - %currentWorkingDirectory%/Classes/Hooks/UsedRecords.php
+    - %currentWorkingDirectory%/Classes/Hooks/DrawItem.php
+    - %currentWorkingDirectory%/Classes/View/ContainerLayoutView.php
+    - %currentWorkingDirectory%/Classes/ViewHelpers/DrawChildrenViewHelper.php
+    # todo
+    - %currentWorkingDirectory%/Tests/Functional/Hooks/UsedRecordsTest.php
+    - %currentWorkingDirectory%/Tests/Unit/Hooks/UsedRecordsTest.php
 
   ignoreErrors:
     -

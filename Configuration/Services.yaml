@@ -41,11 +41,16 @@ services:
     public: true
   B13\Container\Tca\ItemProcFunc:
     public: true
-    
+
   B13\Container\View\ContainerLayoutView:
     shared: false
     public: true
 
+  B13\Container\Listener\ContentUsedOnPage:
+    tags:
+      - name: event.listener
+        identifier: 'tx-container-content-used-on-page'
+        event: TYPO3\CMS\Backend\View\Event\IsContentUsedOnPageLayoutEvent
   B13\Container\Listener\ModifyNewContentElementWizardItems:
     tags:
       - name: event.listener
