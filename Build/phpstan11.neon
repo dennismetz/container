@@ -8,6 +8,7 @@ parameters:
   excludePaths:
     - %currentWorkingDirectory%/Classes/ContentDefender/Hooks/WizardItems.php
     - %currentWorkingDirectory%/Classes/Listener/ModifyNewContentElementWizardItems.php
+    - %currentWorkingDirectory%/Classes/Listener/ContentUsedOnPage.php
 
   ignoreErrors:
     - '#^Cannot call method fetch.*\(\) on Doctrine\\DBAL\\Result\|int\.$#'
