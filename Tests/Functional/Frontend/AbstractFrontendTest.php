@@ -56,9 +56,7 @@ abstract class AbstractFrontendTest extends FunctionalTestCase
         $content = preg_replace('/<div id="container-start"><\/div>(.*)<div id="container-end"><\/div>/', '$1', $content);
         return $content;
     }
-
-
-
+    
     protected function executeFrontendRequestWrapper(InternalRequest $request, InternalRequestContext $context = null, bool $followRedirects = false): InternalResponse
     {
         if ((GeneralUtility::makeInstance(Typo3Version::class)) < 11) {
