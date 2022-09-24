@@ -29,7 +29,7 @@ class DefaultLanguageTest extends AbstractFrontendTest
                 'setup' => ['EXT:container/Tests/Functional/Frontend/Fixtures/TypoScript/setup.typoscript'],
             ]
         );
-        $response = $this->executeFrontendSubRequest(new InternalRequest());
+        $response = $this->executeFrontendRequestWrapper(new InternalRequest('/'));
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('<h1 class="container">container-default</h1>', $body);

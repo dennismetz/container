@@ -36,7 +36,7 @@ class DataProcessorWithIrreTest extends AbstractFrontendTest
      */
     public function relationIsRendered(): void
     {
-        $response = $this->executeFrontendSubRequest(new InternalRequest());
+        $response = $this->executeFrontendRequestWrapper(new InternalRequest('/'));
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('irre-title-default', $body);
@@ -48,7 +48,7 @@ class DataProcessorWithIrreTest extends AbstractFrontendTest
      */
     public function translatedRelationIsRendered(): void
     {
-        $response = $this->executeFrontendSubRequest(new InternalRequest('http://localhost/de'));
+        $response = $this->executeFrontendRequestWrapper(new InternalRequest('http://localhost/de'));
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('irre-title-translated', $body);
