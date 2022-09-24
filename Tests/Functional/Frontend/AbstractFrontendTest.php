@@ -62,9 +62,9 @@ abstract class AbstractFrontendTest extends FunctionalTestCase
     protected function executeFrontendRequestWrapper(InternalRequest $request, InternalRequestContext $context = null, bool $followRedirects = false): InternalResponse
     {
         if ((GeneralUtility::makeInstance(Typo3Version::class)) < 11) {
-            return $this->executeFrontendRequest($request);
+            return $this->executeFrontendRequest($request, $context, $followRedirects);
         } else {
-            return $this->executeFrontendSubRequest($request);
+            return $this->executeFrontendSubRequest($request, $context, $followRedirects);
         }
     }
 }
