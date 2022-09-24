@@ -61,8 +61,7 @@ abstract class AbstractFrontendTest extends FunctionalTestCase
     {
         if ((GeneralUtility::makeInstance(Typo3Version::class)) < 11) {
             return $this->executeFrontendRequest($request, $context, $followRedirects);
-        } else {
-            return $this->executeFrontendSubRequest($request, $context, $followRedirects);
         }
+        return $this->executeFrontendSubRequest($request, $context, $followRedirects);
     }
 }
