@@ -71,6 +71,9 @@ abstract class DatahandlerTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        if ($this->typo3MajorVersion === 10) {
+            $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_language_for_v10.csv');
+        }
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
         $this->backendUser = $GLOBALS['BE_USER'] = $this->setUpBackendUser(1);
         $GLOBALS['BE_USER'] = $this->backendUser;
