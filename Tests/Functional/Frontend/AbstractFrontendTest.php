@@ -10,6 +10,11 @@ namespace B13\Container\Tests\Functional\Frontend;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
+use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequestContext;
+use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalResponse;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 abstract class AbstractFrontendTest extends FunctionalTestCase
@@ -50,5 +55,16 @@ abstract class AbstractFrontendTest extends FunctionalTestCase
         $content = implode('', $notEmpty);
         $content = preg_replace('/<div id="container-start"><\/div>(.*)<div id="container-end"><\/div>/', '$1', $content);
         return $content;
+    }
+
+
+
+    protected function executeFrontendRequestWrapper(InternalRequest $request, InternalRequestContext $context = null, bool $followRedirects = false): InternalResponse
+    {
+        if ((GeneralUtility::makeInstance(Typo3Version::class)) < 11) {
+            return $this->executeFrontendRequest($request);
+        } else {
+            return $this->executeFrontendSubRequest($request);
+        }
     }
 }
