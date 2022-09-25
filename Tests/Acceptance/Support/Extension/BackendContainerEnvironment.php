@@ -11,6 +11,7 @@ namespace B13\Container\Tests\Acceptance\Support\Extension;
  * of the License, or any later version.
  */
 
+use Codeception\Event\SuiteEvent;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -84,17 +85,24 @@ class BackendContainerEnvironment extends BackendEnvironment
                 'typo3conf/ext/container_example',
             ];
         }
+        parent::_initialize();
+    }
+
+    public function bootstrapTypo3Environment(SuiteEvent $suiteEvent)
+    {
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
         if ($typo3Version->getMajorVersion() < 11) {
-            $backup = $this->localConfig['csvDatabaseFixtures'];
-            unset($this->localConfig['csvDatabaseFixtures']);
-            parent::_initialize();
-            $this->localConfig['csvDatabaseFixtures'] = $backup;
-            foreach ($this->localConfig['csvDatabaseFixtures'] as $fixture) {
+            $backup = $this->config['csvDatabaseFixtures'];
+            $this->config['csvDatabaseFixtures'] = [];
+            parent::bootstrapTypo3Environment($suiteEvent);
+
+            $this->config['csvDatabaseFixtures'] = $backup;
+            foreach ($this->config['csvDatabaseFixtures'] as $fixture) {
                 // uses $connection->getSchemaManager() instead of $connection->createSchemaManager()
                 $this->importCSVDataSetV10($fixture);
             }
         } else {
-            parent::_initialize();
+            parent::bootstrapTypo3Environment($suiteEvent);
         }
     }
 
