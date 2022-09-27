@@ -85,6 +85,9 @@ class BackendContainerEnvironment extends BackendEnvironment
                 'typo3conf/ext/container_example',
             ];
         }
+        if ($typo3Version->getMajorVersion() === 10) {
+            $this->localConfig['csvDatabaseFixtures'][] = __DIR__ . '/../../Fixtures/sys_language.csv';
+        }
         parent::_initialize();
     }
 
