@@ -9,7 +9,8 @@ parameters:
     - %currentWorkingDirectory%/Classes/Listener/ModifyNewContentElementWizardItems.php
     - %currentWorkingDirectory%/Classes/Listener/BootCompleted.php
     - %currentWorkingDirectory%/Classes/Listener/ContentUsedOnPage.php
-    
+    - %currentWorkingDirectory%/Tests/Acceptance/Support/Extension/BackendContainerEnvironment.php
+
   ignoreErrors:
     -
       message: '#Method TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository::getLanguageOverlay\(\) invoked with 3 parameters, 2 required.#'
