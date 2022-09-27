@@ -11,6 +11,12 @@ parameters:
     - %currentWorkingDirectory%/Classes/Listener/ContentUsedOnPage.php
 
   ignoreErrors:
+    -
+      message: '#Access to an undefined property B13\\Container\\Tests\\Acceptance\\Support\\Extension\\BackendContainerEnvironment::\$config.#'
+      path: %currentWorkingDirectory%/Tests/Acceptance/Support/Extension/BackendContainerEnvironment.php
+    -
+      message: '#Call to an undefined static method TYPO3\\TestingFramework\\Core\\Acceptance\\Extension\\BackendEnvironment::bootstrapTypo3Environment\(\).#'
+      path: %currentWorkingDirectory%/Tests/Acceptance/Support/Extension/BackendContainerEnvironment.php
     - '#^Cannot call method fetch.*\(\) on Doctrine\\DBAL\\Result\|int\.$#'
     -
       message: '#Method TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository::getLanguageOverlay\(\) invoked with 3 parameters, 2 required.#'
