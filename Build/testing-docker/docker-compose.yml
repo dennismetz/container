@@ -132,7 +132,7 @@ services:
         if [ ${TYPO3} -eq 11 ]; then
           composer install --no-progress --no-interaction;
         elif [ ${TYPO3} -eq 10 ]; then
-          composer require typo3/cms-install:^10.4 typo3/cms-fluid-styled-content:^10.4 typo3/cms-info:^10.4 typo3/cms-workspaces:^10.4 typo3/testing-framework:^6 --dev -W --no-progress --no-interaction
+          composer require friendsofphp/php-cs-fixer:^3.4 typo3/cms-install:^10.4 typo3/cms-fluid-styled-content:^10.4 typo3/cms-info:^10.4 typo3/cms-workspaces:^10.4 typo3/testing-framework:^6 --dev -W --no-progress --no-interaction
         else
           composer remove typo3/cms* ichhabrecht/content-defender --dev --no-progress --no-interaction && composer require typo3/cms-install:12.*.*@dev typo3/cms-fluid-styled-content:12.*.*@dev typo3/cms-info:12.*.*@dev typo3/cms-workspaces:12.*.*@dev --dev -W --no-progress --no-interaction
         fi
