@@ -23,7 +23,7 @@ class ContainerServiceTest extends UnitTestCase
 {
     protected bool $resetSingletonInstances = true;
 
-    protected array $allContainerColumns = [200, 201, 202];
+    protected $allContainerColumns = [200, 201, 202];
 
     /**
      * @return array
