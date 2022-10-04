@@ -38,7 +38,7 @@ class DataProcessorWithFilesTest extends AbstractFrontendTest
      */
     public function relationIsRendered(): void
     {
-        $response = $this->executeFrontendRequestWrapper(new InternalRequest('/'));
+        $response = $this->executeFrontendRequestWrapper(new InternalRequest('http://localhost/'));
         $body = (string)$response->getBody();
         $body = $this->prepareContent($body);
         self::assertStringContainsString('README.md', $body);
