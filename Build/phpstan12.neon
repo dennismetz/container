@@ -25,9 +25,6 @@ parameters:
       message: '#Method TYPO3\\CMS\\Backend\\View\\PageLayoutView::__construct\(\).* invoked with 1 parameter, 0 required.#'
       path: %currentWorkingDirectory%/Classes/View/ContainerLayoutView.php
     -
-      message: '#Call to an undefined method B13\\Container\\Tests\\Functional\\Frontend\\AbstractFrontendTest::executeFrontendRequest\(\).#'
-      path: %currentWorkingDirectory%/Tests/Functional/Frontend/AbstractFrontendTest.php
-    -
       message: '#Class TYPO3\\CMS\\Backend\\View\\PageLayoutView constructor invoked with 1 parameter, 0 required.#'
       path: %currentWorkingDirectory%/Tests/Functional/Hooks/UsedRecordsTest.php
     -
